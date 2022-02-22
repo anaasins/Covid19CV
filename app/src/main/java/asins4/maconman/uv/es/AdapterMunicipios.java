@@ -75,6 +75,20 @@ public class AdapterMunicipios extends RecyclerView.Adapter<AdapterMunicipios.Vi
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        Collections.sort(municipios, new Comparator<Municipio>() {
+            @Override
+            public int compare(Municipio p1, Municipio p2) {
+                return new Float(p1.getCasosPCR14()).compareTo(new Float(p2.getCasosPCR14()));
+            }
+        });
+    }
+    public void ordenCasos() {
+        Collections.sort(municipios, new Comparator<Municipio>() {
+            @Override
+            public int compare(Municipio p1, Municipio p2) {
+                return new Float(p1.getCasosPCR14()).compareTo(new Float(p2.getCasosPCR14()));
+            }
+        });
     }
     @Override
     public int getItemCount() {
