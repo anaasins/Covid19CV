@@ -1,6 +1,7 @@
 package asins4.maconman.uv.es;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,9 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class AdapterMunicipios extends RecyclerView.Adapter<AdapterMunicipios.ViewHolder>{
     private ArrayList<Municipio> municipios;
@@ -115,7 +119,12 @@ public class AdapterMunicipios extends RecyclerView.Adapter<AdapterMunicipios.Vi
         holder.getTextViewMunicipio().setText(String.valueOf(municipios.get(position).getMunicipi()));
         holder.getTextViewCasos().setText(String.valueOf(municipios.get(position).getCasosPCR14()));
         holder.getTextViewIncidencia().setText(String.valueOf(municipios.get(position).getIncidenciaPCR14()));
-
+        int pcr14 = municipios.get(position).getCasosPCR14();
+        if (pcr14 < 50){
+            holder.getTextViewCasos().setTextColor(Color.GREEN);
+        }else {
+            holder.getTextViewCasos().setTextColor(Color.RED);
+        }
     }
 
 }
