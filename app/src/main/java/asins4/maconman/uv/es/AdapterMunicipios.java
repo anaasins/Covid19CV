@@ -76,6 +76,8 @@ public class AdapterMunicipios extends RecyclerView.Adapter<AdapterMunicipios.Vi
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+    public void ordenCasos() {
         Collections.sort(municipios, new Comparator<Municipio>() {
             @Override
             public int compare(Municipio p1, Municipio p2) {
@@ -83,14 +85,14 @@ public class AdapterMunicipios extends RecyclerView.Adapter<AdapterMunicipios.Vi
             }
         });
     }
-    /*public void ordenCasos() {
+    public void ordenIncidencia() {
         Collections.sort(municipios, new Comparator<Municipio>() {
             @Override
             public int compare(Municipio p1, Municipio p2) {
-                return new Float(p1.getCasosPCR14()).compareTo(new Float(p2.getCasosPCR14()));
+                return new Double(p2.getIncidenciaPCR14()).compareTo(new Double(p1.getIncidenciaPCR14()));
             }
         });
-    }*/
+    }
     @Override
     public int getItemCount() {
         return municipios.size();
