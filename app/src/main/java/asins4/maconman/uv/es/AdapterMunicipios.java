@@ -69,7 +69,8 @@ public class AdapterMunicipios extends RecyclerView.Adapter<AdapterMunicipios.Vi
             {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 Municipio mun = new Municipio(jsonObject.getInt("_id"),jsonObject.getInt("CodMunicipio"),  jsonObject.getInt("PCR"), jsonObject.getInt("PCR14"),
-                        jsonObject.getInt("Defuncions"), jsonObject.getString("Municipi"), jsonObject.getString("Incidencia"), jsonObject.getString("Incidencia14"), jsonObject.getString("TaxaD"));
+                        jsonObject.getInt("Defuncions"), jsonObject.getString("Municipi"), jsonObject.getString("Incidencia").replaceAll("\\s","").replace(",", "."),
+                        jsonObject.getString("Incidencia14").replaceAll("\\s","").replace(",", "."), jsonObject.getString("TaxaD").replaceAll("\\s",""));
                 municipios.add(mun);
             }
         } catch (JSONException e) {
@@ -78,18 +79,18 @@ public class AdapterMunicipios extends RecyclerView.Adapter<AdapterMunicipios.Vi
         Collections.sort(municipios, new Comparator<Municipio>() {
             @Override
             public int compare(Municipio p1, Municipio p2) {
-                return new Float(p1.getCasosPCR14()).compareTo(new Float(p2.getCasosPCR14()));
+                return new Float(p2.getCasosPCR14()).compareTo(new Float(p1.getCasosPCR14()));
             }
         });
     }
-    public void ordenCasos() {
+    /*public void ordenCasos() {
         Collections.sort(municipios, new Comparator<Municipio>() {
             @Override
             public int compare(Municipio p1, Municipio p2) {
                 return new Float(p1.getCasosPCR14()).compareTo(new Float(p2.getCasosPCR14()));
             }
         });
-    }
+    }*/
     @Override
     public int getItemCount() {
         return municipios.size();
@@ -134,10 +135,16 @@ public class AdapterMunicipios extends RecyclerView.Adapter<AdapterMunicipios.Vi
         holder.getTextViewCasos().setText(String.valueOf(municipios.get(position).getCasosPCR14()));
         holder.getTextViewIncidencia().setText(String.valueOf(municipios.get(position).getIncidenciaPCR14()));
         int pcr14 = municipios.get(position).getCasosPCR14();
-        if (pcr14 < 50){
+        if (pcr14 < 200){
             holder.getTextViewCasos().setTextColor(Color.GREEN);
         }else {
             holder.getTextViewCasos().setTextColor(Color.RED);
+        }
+        double incidencia14 = Double.parseDouble(municipios.get(position).getIncidenciaPCR14());
+        if(incidencia14 > 1000){
+            holder.getTextViewIncidencia().setTextColor(Color.RED);
+        }else {
+            holder.getTextViewIncidencia().setTextColor(Color.GREEN);
         }
     }
 
