@@ -1,6 +1,8 @@
 package asins4.maconman.uv.es;
 
-public class Municipio {
+import java.io.Serializable;
+
+public class Municipio implements Serializable {
     int id, codMunicipio, casosPCR, casosPCR14, defunciones;
     String municipi, incidenciaPCR, incidenciaPCR14, tasaDefuncion;
 

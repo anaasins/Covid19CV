@@ -8,32 +8,15 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
-        android:layout_width="381dp"
-        android:layout_height="545dp"
+        android:layout_width="379dp"
+        android:layout_height="632dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="43dp"
         android:layout_marginEnd="18dp"
         android:layout_marginBottom="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/buttonOrdenar"
-        android:layout_width="181dp"
-        android:layout_height="77dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="27dp"
-        android:text="Ordenar por casos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/buttonIncidencia"
-        android:layout_width="164dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="22dp"
-        android:text="Ordenar por incidencia"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
