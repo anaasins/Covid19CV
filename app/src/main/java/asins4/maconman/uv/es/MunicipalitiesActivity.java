@@ -18,6 +18,8 @@ import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.SearchView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.io.Serializable;
 
 public class MunicipalitiesActivity extends AppCompatActivity {
@@ -49,6 +51,15 @@ public class MunicipalitiesActivity extends AppCompatActivity {
         };
 
         adapter.setOnItemClickListener(onItemClickListener);
+
+        FloatingActionButton fab = findViewById(R.id.floatingActionButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), FormActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

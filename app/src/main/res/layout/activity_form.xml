@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FormActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="36dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/EditTextMunicipalityT"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/EditTextMunicipality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Municipality" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputDiagnostic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:hint="Diagnostic code" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Symptom start date:" />
+
+            <EditText
+                android:id="@+id/editTextDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="date"
+                android:minHeight="48dp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <CheckBox
+                android:id="@+id/checkBoxFever"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Fever or chills"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <CheckBox
+                android:id="@+id/checkBoxCough"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Cough"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <CheckBox
+                android:id="@+id/checkBoxBreathing"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Difficulty breathing"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <CheckBox
+                android:id="@+id/checkBoxFatigue"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Fatigue"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <CheckBox
+                android:id="@+id/checkBoxMucle"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Muscle or body aches"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <CheckBox
+                android:id="@+id/checkBoxHead"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Headache"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <CheckBox
+                android:id="@+id/checkBoxTaste"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="New loss of taste or smell"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <CheckBox
+                android:id="@+id/checkBoxSore"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Sore throat"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <CheckBox
+                android:id="@+id/checkBoxCongestion"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Congestion"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <CheckBox
+                android:id="@+id/checkBoxNausea"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Nausea or vomiting"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <CheckBox
+                android:id="@+id/checkBoxDiarrhea"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Diarrhea"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Are you a close contact?"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="writeToDatabase"
+                android:text="Save" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

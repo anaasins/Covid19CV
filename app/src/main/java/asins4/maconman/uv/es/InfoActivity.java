@@ -4,12 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.BaseColumns;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -49,6 +55,57 @@ public class InfoActivity extends AppCompatActivity {
             tv = findViewById(R.id.textViewTasa);
             tv.setText(mun.getTasaDefuncion());
         }
+
+        CovidDataBase dbHelper = new CovidDataBase(this, 1);
+        // Gets the data repository in read mode
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        String[] projection = {
+                BaseColumns._ID,
+                CovidContract.CovidEntry.COLUMN_NAME_CODE
+        };
+
+        // Filter results WHERE
+        String selection = CovidContract.CovidEntry.COLUMN_NAME_MUNICIPALITY + " = ?";
+        String[] selectionArgs = { name };
+
+        Cursor cursor = db.query(
+                CovidContract.CovidEntry.TABLE_NAME,   // The table to query
+                projection,             // The array of columns to return (pass null to get all)
+                selection,              // The columns for the WHERE clause
+                selectionArgs,          // The values for the WHERE clause
+                null,                   // don't group the rows
+                null,                   // don't filter by row groups
+                null
+        );
+
+        // Setup cursor adapter using cursor from last step
+        CovidCursorAdapter covidAdapter = new CovidCursorAdapter();
+        covidAdapter.setCursor(cursor);
+        RecyclerView recyclerView = findViewById(R.id.reciclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(covidAdapter);
+
+        View.OnClickListener onItemClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // This viewHolder will have all required values.
+                RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+                int posicion = viewHolder.getAdapterPosition();
+                //muevo el cursor a la tarea que quiero marcar como hecha
+                //este cursor sale de arriba de cuando cojo los datos a mostrar
+                cursor.moveToPosition(posicion);
+                //recojo el indice de dicha tarea
+                int index = cursor.getColumnIndex(CovidContract.CovidEntry._ID);
+                int id = cursor.getInt(index);
+                // Implement the listener!
+                Intent intent = new Intent(getApplicationContext(), FormActivity.class);
+                intent.putExtra("caso", id);
+                startActivity(intent);
+            }
+        };
+
+        covidAdapter.setOnItemClickListener(onItemClickListener);
     }
 
     @Override
