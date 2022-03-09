@@ -22,10 +22,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -50,8 +48,6 @@ public class AdapterMunicipios extends RecyclerView.Adapter<AdapterMunicipios.Vi
             while ((n = reader.read(buffer)) != -1) {
                 writer.write(buffer, 0, n);
             }
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -110,7 +106,7 @@ public class AdapterMunicipios extends RecyclerView.Adapter<AdapterMunicipios.Vi
                     ArrayList<Municipio> filteredList = new ArrayList<>();
                     for (Municipio row : municipios) {
                         //cuidado
-                        if (row.municipi.toLowerCase().contains(charString.toLowerCase())) {;
+                        if (row.municipi.toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row);
                         }
                     }
