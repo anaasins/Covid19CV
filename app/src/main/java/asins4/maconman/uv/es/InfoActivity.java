@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import org.w3c.dom.Text;
 
 import java.io.Serializable;
@@ -106,6 +108,16 @@ public class InfoActivity extends AppCompatActivity {
         };
 
         covidAdapter.setOnItemClickListener(onItemClickListener);
+
+        FloatingActionButton fab = findViewById(R.id.floatingActionButton2);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), FormActivity.class);
+                intent.putExtra("munName", name);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

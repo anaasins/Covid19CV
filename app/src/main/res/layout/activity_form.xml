@@ -142,13 +142,6 @@
                 android:text="Are you a close contact?"
                 tools:ignore="TouchTargetSizeCheck" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="writeToDatabase"
-                android:text="Save" />
-
         </LinearLayout>
     </ScrollView>
 
