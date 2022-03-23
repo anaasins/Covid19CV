@@ -22,7 +22,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -36,9 +39,15 @@ public class AdapterMunicipios extends RecyclerView.Adapter<AdapterMunicipios.Vi
         context=c;
         Init();
     }
+    public AdapterMunicipios(Context c, ArrayList<Municipio> mun){
+        context = c;
+        municipios = mun;
+        Init();
+    }
     public void Init() {
         // We read the JSON file and fill the “municipios” ArrayList
-        municipios=new ArrayList<Municipio>();
+        //municipios=new ArrayList<Municipio>();
+        /*
         InputStream is = context.getResources().openRawResource(R.raw.municipioscv);
         Writer writer = new StringWriter();
         char[] buffer = new char[1024];
@@ -57,24 +66,8 @@ public class AdapterMunicipios extends RecyclerView.Adapter<AdapterMunicipios.Vi
                 e.printStackTrace();
             }
         }
-        //The String writer.toString() must be parsed in the municipalities ArrayList by using JSONArray and JSONObject
-        String jsonString = writer.toString();
-        try {
-            JSONObject file = new JSONObject(jsonString);
-            JSONObject result = file.getJSONObject("result");
-            JSONArray jsonArray = result.getJSONArray("records");
-            int num = jsonArray.length();
-            for(int i=0 ; i< num; i++)
-            {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                Municipio mun = new Municipio(jsonObject.getInt("_id"),jsonObject.getInt("CodMunicipio"),  jsonObject.getInt("PCR"), jsonObject.getInt("PCR14"),
-                        jsonObject.getInt("Defuncions"), jsonObject.getString("Municipi"), jsonObject.getString("Incidencia").replaceAll("\\s","").replace(",", "."),
-                        jsonObject.getString("Incidencia14").replaceAll("\\s","").replace(",", "."), jsonObject.getString("TaxaD").replaceAll("\\s",""));
-                municipios.add(mun);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        */
+
         municipiosFiltrado = municipios;
     }
     public void ordenCasos() {

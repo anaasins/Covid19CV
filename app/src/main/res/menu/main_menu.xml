@@ -3,6 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/actualizar"
+        android:icon="@android:drawable/ic_popup_sync"
+        android:title="Actualizar"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/app_bar_search"
         android:icon="@android:drawable/ic_menu_search"
         android:title="Buscar"

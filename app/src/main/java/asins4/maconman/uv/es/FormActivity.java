@@ -41,21 +41,22 @@ public class FormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
 
-        // Location
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
-        } else {
-            locationStart();
-        }
-
         if(getIntent().getExtras()!=null){
             caso = getIntent().getIntExtra("caso", 0);
             municipio = getIntent().getStringExtra("munName");
+            if (municipio!= null && municipio!=""){
+                editText = (EditText) findViewById(R.id.EditTextMunicipality);
+                editText.setText(municipio);
+            }
+        }else {
+            // Location
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
+            } else {
+                locationStart();
+            }
         }
-        if (municipio!= null && municipio!=""){
-            editText = (EditText) findViewById(R.id.EditTextMunicipality);
-            editText.setText(municipio);
-        }
+
         if(caso != 0){
             update=true;
 
@@ -412,19 +413,20 @@ public class FormActivity extends AppCompatActivity {
             loc.getLongitude();
             this.formActivity.setLocation(loc);
         }
-        /*
+
         @Override
         public void onProviderDisabled(String provider) {
             // Este metodo se ejecuta cuando el GPS es desactivado
-            mensaje1.setText("GPS Desactivado");
-        }*/
-        /*
+            Log.d("onProviderDisabled: ", "Disabled");
+        }
+
         @Override
         public void onProviderEnabled(String provider) {
             // Este metodo se ejecuta cuando el GPS es activado
-            mensaje1.setText("GPS Activado");
-        }*/
-        /*
+            Log.d("onProviderEnabled: ", "Enabled");
+
+        }
+
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
             switch (status) {
@@ -438,7 +440,7 @@ public class FormActivity extends AppCompatActivity {
                     Log.d("debug", "LocationProvider.TEMPORARILY_UNAVAILABLE");
                     break;
             }
-        }*/
+        }
     }
 
     private void locationStart() {
@@ -478,6 +480,7 @@ public class FormActivity extends AppCompatActivity {
                 if (!list.isEmpty()) {
                     Address DirCalle = list.get(0);
                     municipio = DirCalle.getLocality();
+                    Log.d("TAG", municipio);
                     EditText myeditText = (EditText) findViewById(R.id.EditTextMunicipality);
                     myeditText.setText(DirCalle.getLocality());
                 }
